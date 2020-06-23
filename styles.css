@@ -1,0 +1,176 @@
+body {
+    background-color: #00807F;
+}
+
+h1 {
+    font-family: 'Helvetica';
+    line-height: 51px;
+    margin-left: 35%;
+    margin-top: 10%;
+}
+   
+#firstName {
+    font-size: 50px;
+    margin-bottom: 0px;
+    color: lightgray;
+    font-weight: lighter;
+    
+}
+
+#lastName {
+    font-family: 'Arial Black';
+    margin-top: 0px; 
+    font-size: 100px;
+    margin-left: 40px;
+}
+
+#birthYear {
+    
+    font-family: 'Helvetica';
+    color: lightgray;
+}
+
+.footer {
+    height: 38px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #DCDCDC;
+}
+
+#start {
+    height: 30px;
+    width: 100px;
+    background:#C0C0C0;
+    border-width:2px;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    position: fixed;
+    bottom: 2px;
+    left: 2px;
+    z-index: 1;
+    font-family: Helvetica;
+    line-height: 30px;
+    cursor: default;
+}
+
+#start:hover {
+    background-color: lightgray;
+}
+
+nav {
+    width: 200px;
+    height: 400px;
+    background-color: #DCDCDC;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    text-align: right;
+    font-family: Helvetica;
+    position: fixed;
+    bottom: 39px;
+    left: 0px;
+    visibility: hidden;
+    cursor: default;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    height: 55px;
+    border-style: solid;    
+    border-width: 1px;
+    border-color: gray;
+    line-height: 55px;
+}
+
+li:hover {
+    background-color: blue;
+    color: white;
+}
+
+#top {
+    height: 70px;
+    line-height: 70px;
+    background-color: #DCDCDC;
+    color: black;
+}
+
+#close {
+    color: red;
+    font-size: 18px;
+    position: fixed;
+    left: 192px;
+    bottom: 400px;
+    cursor: default;
+}
+
+#aboutClose, #projectsClose, #contactClose {
+    color: red;
+    font-size: 18px;
+    position: fixed;
+    left: 593px;
+    bottom: 647px;
+    cursor: default;
+    z-index: 1;
+   
+}
+
+#about {
+
+    width: 400px;
+    height: 600px;
+    background-color: #DCDCDC;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    font-family: Helvetica;
+    position: fixed;
+    bottom: 60px;
+    left: 200px;
+    visibility: hidden;
+    cursor: default;
+}
+
+#projects {
+
+    width: 400px;
+    height: 600px;
+    background-color: #DCDCDC;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    font-family: Helvetica;
+    position: fixed;
+    bottom: 60px;
+    left: 200px;
+    visibility: hidden;
+    cursor: default;
+
+}
+
+#contact {
+
+    width: 400px;
+    height: 600px;
+    background-color: #DCDCDC;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    font-family: Helvetica;
+    position: fixed;
+    bottom: 60px;
+    left: 200px;
+    visibility: hidden;
+    cursor: default;
+
+}
+
