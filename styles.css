@@ -122,13 +122,13 @@ li:hover {
 
 #aboutClose, #projectsClose, #contactClose {
     color: red;
-    font-size: 18px;
-    position: fixed;
+    font-size: 25px;
+    /* position: fixed;
     left: 593px;
-    bottom: 647px;
+    bottom: 647px; */
     cursor: default;
-   z-index: auto;
-   
+    float: right;
+    margin-right: 3px;
 }
 
 #about {
@@ -161,7 +161,7 @@ li:hover {
     left: 200px;
     visibility: hidden;
     cursor: default;
-
+    
 }
 
 #contact {
@@ -181,3 +181,104 @@ li:hover {
 
 }
 
+img {
+    height: 90px;
+}
+
+.windowsHeader {
+    background-color: blue;
+    color: white;
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 0px;
+}
+
+#contact img {
+    height: 150px;
+    vertical-align: middle;
+    margin: 20px;
+}
+
+#bioContent {
+    margin: 5%;
+    font-size: 25px;
+}
+
+#bioContent a {
+    color: red;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 589px) {
+    h1 {
+      margin-left: 15%;
+      
+    }
+    #firstName {
+        font-size: 25px;
+        
+    }
+    #lastName {
+        position: fixed;
+        top: 80px;
+        font-size: 50px;
+    }
+
+    nav {
+        width: 100px;
+        height: 350px;
+    }
+    #close {
+        
+        
+        position: fixed;
+        left: 92px;
+        bottom: 350px;
+        cursor: default;
+    }
+    #about {
+        width: 250px;
+        height: 500px;
+        position: fixed;
+        bottom: 60px;
+        left: 106px;
+        
+        text-align: center;
+
+    }
+    
+    #projects {
+        width: 250px;
+        height: 500px;
+        position: fixed;
+        bottom: 60px;
+        left: 106px;
+    }
+    #contact {
+        width: 250px;
+        height: 500px;
+        position: fixed;
+        bottom: 60px;
+        left: 106px;
+    }
+
+    #contact img {
+        height: 100px;
+        vertical-align: middle;
+       
+    }
+
+    #bioContent {
+        
+        font-size: 18.5px;
+    }
+
+    #lastName {
+        font-family: 'Arial Black';
+        
+    }
+
+
+
+  }

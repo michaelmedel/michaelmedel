@@ -39,5 +39,10 @@ $('#contactClose').click(function(){
     $("#contact").css("visibility", "hidden");
 });
 
+$(function(){
+    $.minimalTips();
+});
+    
+
 
 

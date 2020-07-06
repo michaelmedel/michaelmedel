@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Michael Medel</title>
+    <link rel="stylesheet" href="jquery.minimalTips.css">
     <link rel="stylesheet" href="styles.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="jquery.minimalTips.js"></script>
 </head>
 <body>
-    <!-- <img src="computer.png"></img>
-    <img src="calendar.png"></img>
-    <img src="globe.png" id="globe"></img> -->
+    
     <h1>
     <p id="firstName">Michael</p>
     <p id="lastName">Medel<span id="birthYear">81</span></p>
     </h1>
+    
     <nav>
         <ul>
             <li id="top">Explorer<span id="close">x</span></li>
@@ -26,12 +27,48 @@
             <li>Run</li>
         </ul>
     </nav>
-
-    <div id="about"><span id="aboutClose">x</span>Bio coming soon...</div>
-    <div id="projects"><span id="projectsClose">x</span>Projects comign soon...</div>
-    <div id="contact"><span id="contactClose">x</span>Contacts coming soon...</div>
-    <div id="start">Start</div>
-    <footer class="footer"></footer>
+    
+    <div id="about">
+        <p class="windowsHeader">Bio<span id="aboutClose">x</span></p>
+        <p id="bioContent">
+            Born on the South Side of Chicago and grew up in South Florida.
+            I moved to NYC in 1999 to study Fine Art at The Cooper Union.
+            After a decade working in the art world I took a few coding courses at 
+            General Assembly. Since 2015 I've been working
+             for Houghton Mifflin Harcourt as a Product Manager a part 
+             of the team delivering 
+             <a href="https://www.hmhco.com/programs/read-180-universal">READ 180</a> 
+             and <a href="https://www.hmhco.com/programs/system-44">System 44</a> to students all over the country.
+            I made this site to highlight my personal web dev projects. 
+        </p>
+    </div>
+    <div id="projects">
+        <p class="windowsHeader">Projects<span id="projectsClose">x</span></p>
+        <a href="https://intense-woodland-63160.herokuapp.com/" target="_blank"><img src="filefolder.png" class="mintip" title="Members App - learning how to build an Express API"></img></a>
+        <a href="https://mighty-waters-22138.herokuapp.com" target="_blank"><img src="filefolder.png" class="mintip" title="Guestbook - learning Express basics"></img></a>
+        <a href="http://michaelmedel.github.io/weather-or-not/" target="_blank"><img src="filefolder.png" class="mintip" title="Weather Or Not - an app that tells you the weather conditions a year ago"></img></a>
+        <a href="https://michaelmedel.github.io/magic8/" target="_blank"><img src="filefolder.png" class="mintip" title="Magic 8-Ball built in vanilla JavaScript"></img></a>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        <img src="filefolder.png"></img>
+        </div>
+        <div id="contact">
+            <p class="windowsHeader">Contact<span id="contactClose">x</span></p>
+            <a href="mailto:michaellmedel@gmail.com" target="_blank"><img src="email.png"></img></a>
+            <a href="https://github.com/michaelmedel" target="_blank"><img src="github.png"></img></a>
+            <a href="https://www.linkedin.com/in/michaelmedel/" target="_blank"><img src="linkedin.png"></img></a>
+        </div>
+        <div id="start">Start</div>
+        <footer class="footer"></footer>
     
 
     <script src="js.js"></script>  
