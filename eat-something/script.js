@@ -4,7 +4,7 @@ const locationStatus = document.getElementById('location-status');
 const results = document.getElementById('results');
 const emptyState = document.getElementById('empty-state');
 
-const labels = { breakfast: 'Breakie', lunch: 'Lunchy', dinner: 'Dins' };
+const labels = { breakfast: 'breakie', lunch: 'lunchy', dinner: 'dins' };
 
 mealButtons.forEach((button) => {
   button.addEventListener('click', () => findRestaurants(button.dataset.meal));
@@ -17,18 +17,18 @@ async function findRestaurants(meal) {
   });
   results.hidden = true;
   emptyState.hidden = true;
-  locationStatus.textContent = `Finding ${labels[meal].toLowerCase()} near you...`;
+  locationStatus.textContent = `finding ${labels[meal]} near you...`;
 
   try {
-    if (!apiKey) throw new Error('A Google Places API key has not been configured.');
+    if (!apiKey) throw new Error('a Google Places API key has not been configured.');
     const position = await getLocation();
     const places = await searchPlaces(meal, position.coords.latitude, position.coords.longitude);
     const picks = choosePicks(places);
-    if (picks.length < 3) throw new Error('Not enough rated restaurants were found nearby. Try another meal.');
+    if (picks.length < 3) throw new Error('not enough rated restaurants were found nearby. try another meal.');
     renderPicks(picks);
-    locationStatus.textContent = `Three highly rated ${labels[meal].toLowerCase()} spots near you.`;
+    locationStatus.textContent = `three highly rated ${labels[meal]} spots near you.`;
   } catch (error) {
-    locationStatus.textContent = error.message || 'Unable to find restaurants right now.';
+    locationStatus.textContent = error.message || 'unable to find restaurants right now.';
     emptyState.hidden = false;
   } finally {
     mealButtons.forEach((button) => { button.disabled = false; });
@@ -36,29 +36,38 @@ async function findRestaurants(meal) {
 }
 
 function getLocation() {
-  if (!navigator.geolocation) return Promise.reject(new Error('Location is not available in this browser.'));
+  if (!navigator.geolocation) return Promise.reject(new Error('location is not available in this browser.'));
   return new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, () => {
-    reject(new Error('Location permission is needed to find restaurants near you.'));
+    reject(new Error('location permission is needed to find restaurants near you.'));
   }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }));
 }
 
 async function searchPlaces(meal, latitude, longitude) {
-  const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'X-Goog-Api-Key': apiKey,
-      'X-Goog-FieldMask': 'places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount,places.priceLevel'
-    },
-    body: JSON.stringify({
-      textQuery: `best rated ${meal} restaurants`,
-      locationBias: { circle: { center: { latitude, longitude }, radius: 5000 } },
-      maxResultCount: 20
-    })
-  });
-  if (!response.ok) throw new Error('Restaurant search is unavailable. Check the Google Places API key.');
-  const data = await response.json();
-  return (data.places || []).filter((place) => place.rating && place.location);
+  const tiers = {
+    Low: ['PRICE_LEVEL_INEXPENSIVE'],
+    Medium: ['PRICE_LEVEL_MODERATE'],
+    High: ['PRICE_LEVEL_EXPENSIVE', 'PRICE_LEVEL_VERY_EXPENSIVE']
+  };
+  const searches = await Promise.all(Object.entries(tiers).map(async ([tier, priceLevels]) => {
+    const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Key': apiKey,
+        'X-Goog-FieldMask': 'places.id,places.displayName,places.formattedAddress,places.location,places.rating,places.userRatingCount,places.priceLevel'
+      },
+      body: JSON.stringify({
+        textQuery: `best rated ${meal} restaurants`,
+        locationBias: { circle: { center: { latitude, longitude }, radius: 5000 } },
+        priceLevels,
+        maxResultCount: 20
+      })
+    });
+    if (!response.ok) throw new Error('restaurant search is unavailable. check the Google Places API key.');
+    const data = await response.json();
+    return { tier, places: (data.places || []).filter((place) => place.rating && place.location) };
+  }));
+  return searches;
 }
 
 function priceGroup(place) {
@@ -68,14 +77,11 @@ function priceGroup(place) {
   return 'High';
 }
 
-function choosePicks(places) {
-  const ranked = [...places].sort((first, second) => (second.rating - first.rating) || ((second.userRatingCount || 0) - (first.userRatingCount || 0)));
-  const selected = [];
-  ['Low', 'Medium', 'High'].forEach((group) => {
-    const match = ranked.find((place) => priceGroup(place) === group && !selected.includes(place));
-    if (match) selected.push(match);
-  });
-  return selected;
+function choosePicks(tieredSearches) {
+  return tieredSearches.map(({ tier, places }) => {
+    const ranked = [...places].sort((first, second) => (second.rating - first.rating) || ((second.userRatingCount || 0) - (first.userRatingCount || 0)));
+    return ranked[0] && { ...ranked[0], selectedTier: tier };
+  }).filter(Boolean);
 }
 
 function renderPicks(picks) {
@@ -83,7 +89,7 @@ function renderPicks(picks) {
     const button = document.createElement('button');
     button.className = 'restaurant';
     button.type = 'button';
-    button.innerHTML = `<span class="price">${priceGroup(place)}</span><span><strong class="restaurant-name"></strong><span class="restaurant-meta"></span></span><span class="map-cue" aria-hidden="true">&#8599;</span>`;
+    button.innerHTML = `<span class="price">${place.selectedTier || priceGroup(place)}</span><span><strong class="restaurant-name"></strong><span class="restaurant-meta"></span></span>`;
     button.querySelector('.restaurant-name').textContent = place.displayName.text;
     button.querySelector('.restaurant-meta').textContent = `${place.rating.toFixed(1)} stars · ${place.formattedAddress}`;
     button.addEventListener('click', () => openMap(place));

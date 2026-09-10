@@ -3,30 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eat Something</title>
+  <title>eat something</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main class="app-shell">
+  <main class="app-shell container-fluid px-3 px-sm-4 py-4">
     <header class="masthead">
-      <p class="eyebrow">LOCAL RESTAURANT FINDER</p>
-      <h1>Eat Something</h1>
-      <p class="subtitle">One excellent pick at every price.</p>
+      <h1>eat something</h1>
     </header>
 
-    <section class="meal-picker" aria-labelledby="meal-heading">
-      <h2 id="meal-heading">What are we eating?</h2>
-      <div class="meal-buttons" role="group" aria-label="Choose a meal">
-        <button type="button" data-meal="breakfast">Breakie</button>
-        <button type="button" data-meal="lunch">Lunchy</button>
-        <button type="button" data-meal="dinner">Dins</button>
+    <section class="meal-picker" aria-label="pick a meal">
+      <div class="btn-group meal-buttons w-100" role="group" aria-label="Choose a meal">
+        <button type="button" class="btn" data-meal="breakfast">breakie</button>
+        <button type="button" class="btn" data-meal="lunch">lunchy</button>
+        <button type="button" class="btn" data-meal="dinner">dins</button>
       </div>
     </section>
 
     <section class="results-panel" aria-live="polite">
-      <p id="location-status" class="location-status">Choose a meal to find the best spots near you.</p>
+      <p id="location-status" class="visually-hidden">choose a meal to find the best spots near you.</p>
       <div id="results" class="results" hidden></div>
-      <p id="empty-state" class="empty-state">Your three picks will appear here.</p>
+      <div id="empty-state" class="visually-hidden"><p>your three picks will appear here.</p></div>
     </section>
   </main>
   <script src="config.js"></script>
