@@ -17,6 +17,7 @@ async function findRestaurants(meal) {
   });
   results.hidden = true;
   emptyState.hidden = true;
+  locationStatus.classList.remove('visually-hidden');
   locationStatus.textContent = `finding ${labels[meal]} near you...`;
 
   try {
@@ -44,9 +45,9 @@ function getLocation() {
 
 async function searchPlaces(meal, latitude, longitude) {
   const tiers = {
-    Low: ['PRICE_LEVEL_INEXPENSIVE'],
-    Medium: ['PRICE_LEVEL_MODERATE'],
-    High: ['PRICE_LEVEL_EXPENSIVE', 'PRICE_LEVEL_VERY_EXPENSIVE']
+    '$$$': ['PRICE_LEVEL_EXPENSIVE', 'PRICE_LEVEL_VERY_EXPENSIVE'],
+    '$$': ['PRICE_LEVEL_MODERATE'],
+    '$': ['PRICE_LEVEL_INEXPENSIVE']
   };
   const searches = await Promise.all(Object.entries(tiers).map(async ([tier, priceLevels]) => {
     const response = await fetch('https://places.googleapis.com/v1/places:searchText', {
@@ -72,9 +73,9 @@ async function searchPlaces(meal, latitude, longitude) {
 
 function priceGroup(place) {
   const level = place.priceLevel || 'PRICE_LEVEL_UNSPECIFIED';
-  if (['PRICE_LEVEL_FREE', 'PRICE_LEVEL_INEXPENSIVE'].includes(level)) return 'Low';
-  if (level === 'PRICE_LEVEL_MODERATE') return 'Medium';
-  return 'High';
+  if (['PRICE_LEVEL_FREE', 'PRICE_LEVEL_INEXPENSIVE'].includes(level)) return '$';
+  if (level === 'PRICE_LEVEL_MODERATE') return '$$';
+  return '$$$';
 }
 
 function choosePicks(tieredSearches) {
