@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eat Something</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="masthead">
+      <p class="eyebrow">LOCAL RESTAURANT FINDER</p>
+      <h1>Eat Something</h1>
+      <p class="subtitle">One excellent pick at every price.</p>
+    </header>
+
+    <section class="meal-picker" aria-labelledby="meal-heading">
+      <h2 id="meal-heading">What are we eating?</h2>
+      <div class="meal-buttons" role="group" aria-label="Choose a meal">
+        <button type="button" data-meal="breakfast">Breakie</button>
+        <button type="button" data-meal="lunch">Lunchy</button>
+        <button type="button" data-meal="dinner">Dins</button>
+      </div>
+    </section>
+
+    <section class="results-panel" aria-live="polite">
+      <p id="location-status" class="location-status">Choose a meal to find the best spots near you.</p>
+      <div id="results" class="results" hidden></div>
+      <p id="empty-state" class="empty-state">Your three picks will appear here.</p>
+    </section>
+  </main>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
