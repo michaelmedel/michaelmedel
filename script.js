@@ -123,6 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Wire up window controls + dragging
   windows.forEach(win => {
     const titleBar = win.querySelector('.title-bar');
+    win.querySelector('.launch-btn').addEventListener('click', event => {
+      event.stopPropagation();
+      const url = new URL(win.dataset.launchUrl, window.location.href).href;
+      window.open(url, '_blank', 'popup=yes,width=1200,height=850,resizable=yes,scrollbars=yes');
+    });
     win.querySelector('.close-btn').addEventListener('click', () => closeWindow(win));
     win.querySelector('.minimize-btn').addEventListener('click', () => minimizeWindow(win));
     win.querySelector('.maximize-btn').addEventListener('click', () => toggleMaximize(win));

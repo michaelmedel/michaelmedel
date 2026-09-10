@@ -259,6 +259,34 @@ html, body {
   font-family: 'Marlett', Arial, sans-serif;
 }
 
+.launch-btn {
+  cursor: pointer;
+}
+
+.app-launch-bar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px 6px;
+  background: #d4d0c8;
+  border-bottom: 1px solid #808080;
+  flex-shrink: 0;
+}
+
+.app-launch-button {
+  width: auto;
+  min-height: 24px;
+  padding: 2px 10px;
+  color: #000;
+  background: #c0c0c0;
+  border: 1px solid;
+  border-color: #fff #000 #000 #fff;
+  font: bold 12px Arial, sans-serif;
+}
+
+.app-launch-button:active {
+  border-color: #000 #fff #fff #000;
+}
+
 .title-btn:active {
   border-color: #000000 #ffffff #ffffff #000000;
 }

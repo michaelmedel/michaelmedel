@@ -30,7 +30,7 @@
     </div>
 
     <!-- Weather App Window -->
-    <div class="window" id="weather-window" style="width: 800px; height: 560px; top: 60px; left: 180px;">
+    <div class="window" id="weather-window" data-launch-url="https://weather-compare-one.vercel.app/" style="width: 800px; height: 560px; top: 60px; left: 180px;">
       <div class="title-bar">
         <div class="title-bar-text">
           <span class="title-icon folder-icon-small"></span>
@@ -45,6 +45,7 @@
       <div class="menu-bar">
         <span>File</span><span>Edit</span><span>View</span><span>Help</span>
       </div>
+      <div class="app-launch-bar"><button class="app-launch-button launch-btn" aria-label="Open Whether App in a new window">Open Whether App in new window ↗</button></div>
       <div class="window-body">
         <iframe class="app-frame" src="https://weather-compare-one.vercel.app/" title="Whether App"></iframe>
       </div>
@@ -54,7 +55,7 @@
       </div>
     </div>
 
-    <div class="window" id="eat-something-window" style="width: 760px; height: 560px; top: 90px; left: 120px;">
+    <div class="window" id="eat-something-window" data-launch-url="eat-something/" style="width: 760px; height: 560px; top: 90px; left: 120px;">
       <div class="title-bar">
         <div class="title-bar-text">
           <span class="title-icon folder-icon-small"></span>
@@ -69,6 +70,7 @@
       <div class="menu-bar">
         <span>File</span><span>Edit</span><span>View</span><span>Help</span>
       </div>
+      <div class="app-launch-bar"><button class="app-launch-button launch-btn" aria-label="Open eat something in a new window">Open eat something in new window ↗</button></div>
       <div class="window-body">
         <iframe class="app-frame" src="eat-something/" title="eat something" allow="geolocation"></iframe>
       </div>
