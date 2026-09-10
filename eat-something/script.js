@@ -23,8 +23,8 @@ async function findRestaurants(meal) {
 
   try {
     if (!apiKey) throw new Error('a Google Places API key has not been configured.');
-    const position = await getLocation();
-    const places = await searchPlaces(meal, position.coords.latitude, position.coords.longitude);
+    const location = await getApproximateLocation();
+    const places = await searchPlaces(meal, location.latitude, location.longitude);
     const picks = choosePicks(places);
     if (picks.length < 3) throw new Error('not enough rated restaurants were found nearby. try another meal.');
     renderPicks(picks);
@@ -37,11 +37,14 @@ async function findRestaurants(meal) {
   }
 }
 
-function getLocation() {
-  if (!navigator.geolocation) return Promise.reject(new Error('location is not available in this browser.'));
-  return new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, () => {
-    reject(new Error('location permission is needed to find restaurants near you.'));
-  }, { enableHighAccuracy: false, timeout: 10000, maximumAge: 300000 }));
+async function getApproximateLocation() {
+  const response = await fetch('https://ipwho.is/');
+  if (!response.ok) throw new Error('unable to estimate your location right now.');
+  const data = await response.json();
+  if (!data.success || !Number.isFinite(data.latitude) || !Number.isFinite(data.longitude)) {
+    throw new Error('unable to estimate your location right now.');
+  }
+  return { latitude: data.latitude, longitude: data.longitude };
 }
 
 async function searchPlaces(meal, latitude, longitude) {
