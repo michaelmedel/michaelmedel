@@ -5,6 +5,7 @@ const results = document.getElementById('results');
 const emptyState = document.getElementById('empty-state');
 
 const labels = { breakfast: 'breakie', lunch: 'lunchy', dinner: 'dins' };
+const SEARCH_RADIUS_METERS = 16093;
 
 mealButtons.forEach((button) => {
   button.addEventListener('click', () => findRestaurants(button.dataset.meal));
@@ -59,16 +60,35 @@ async function searchPlaces(meal, latitude, longitude) {
       },
       body: JSON.stringify({
         textQuery: `best rated ${meal} restaurants`,
-        locationBias: { circle: { center: { latitude, longitude }, radius: 5000 } },
+        locationRestriction: locationRestriction(latitude, longitude),
         priceLevels,
         maxResultCount: 20
       })
     });
     if (!response.ok) throw new Error('restaurant search is unavailable. check the Google Places API key.');
     const data = await response.json();
-    return { tier, places: (data.places || []).filter((place) => place.rating && place.location) };
+    return { tier, places: (data.places || []).filter((place) => place.rating && place.location && distanceInMeters(latitude, longitude, place.location.latitude, place.location.longitude) <= SEARCH_RADIUS_METERS) };
   }));
   return searches;
+}
+
+function distanceInMeters(firstLatitude, firstLongitude, secondLatitude, secondLongitude) {
+  const toRadians = (degrees) => degrees * Math.PI / 180;
+  const latitudeDelta = toRadians(secondLatitude - firstLatitude);
+  const longitudeDelta = toRadians(secondLongitude - firstLongitude);
+  const haversine = Math.sin(latitudeDelta / 2) ** 2 + Math.cos(toRadians(firstLatitude)) * Math.cos(toRadians(secondLatitude)) * Math.sin(longitudeDelta / 2) ** 2;
+  return 6371000 * 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine));
+}
+
+function locationRestriction(latitude, longitude) {
+  const latitudeOffset = SEARCH_RADIUS_METERS / 111320;
+  const longitudeOffset = SEARCH_RADIUS_METERS / (111320 * Math.cos(latitude * Math.PI / 180));
+  return {
+    rectangle: {
+      low: { latitude: latitude - latitudeOffset, longitude: longitude - longitudeOffset },
+      high: { latitude: latitude + latitudeOffset, longitude: longitude + longitudeOffset }
+    }
+  };
 }
 
 function priceGroup(place) {
