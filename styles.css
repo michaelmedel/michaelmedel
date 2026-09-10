@@ -1,0 +1,284 @@
+html {
+   
+    background: url("desktop.png") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+h1 {
+    font-family: 'Helvetica';
+    line-height: 51px;
+    margin-left: 32%;
+    position: fixed;
+    /* z-index: 1; */
+}
+   
+#firstName {
+    font-size: 50px;
+    margin-bottom: 0px;
+    color: lightgray;
+    font-weight: lighter;
+    
+}
+
+#lastName {
+    font-family: 'Arial Black';
+    margin-top: 0px; 
+    font-size: 100px;
+    margin-left: 40px;
+}
+
+#birthYear {
+    
+    font-family: 'Helvetica';
+    color: lightgray;
+}
+
+.footer {
+    height: 38px;
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: #DCDCDC;
+    
+}
+
+#start {
+    height: 30px;
+    width: 100px;
+    background:#C0C0C0;
+    border-width:2px;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    position: fixed;
+    bottom: 2px;
+    left: 2px;
+    z-index: 1;
+    font-family: Helvetica;
+    line-height: 30px;
+    cursor: default;
+}
+
+#start:hover {
+    background-color: lightgray;
+}
+
+nav {
+    width: 200px;
+    height: 400px;
+    background-color: #DCDCDC;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    text-align: right;
+    font-family: Helvetica;
+    position: fixed;
+    bottom: 39px;
+    left: 0px;
+    visibility: hidden;
+    cursor: default;
+}
+
+ul {
+    list-style-type: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    height: 55px;
+    border-style: solid;    
+    border-width: 1px;
+    border-color: gray;
+    line-height: 55px;
+}
+
+li:hover {
+    background-color: blue;
+    color: white;
+}
+
+#top {
+    height: 70px;
+    line-height: 70px;
+    background-color: #DCDCDC;
+    color: black;
+}
+
+#close {
+    color: red;
+    font-size: 18px;
+    position: fixed;
+    left: 192px;
+    bottom: 400px;
+    cursor: default;
+}
+
+#aboutClose, #projectsClose, #contactClose {
+    color: red;
+    font-size: 25px;
+    /* position: fixed;
+    left: 593px;
+    bottom: 647px; */
+    cursor: default;
+    float: right;
+    margin-right: 3px;
+}
+
+#about {
+
+    width: 400px;
+    height: 600px;
+    background-color: #DCDCDC;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    font-family: Helvetica;
+    position: fixed;
+    bottom: 60px;
+    left: 200px;
+    visibility: hidden;
+    cursor: default;
+}
+
+#projects {
+
+    width: 400px;
+    height: 600px;
+    background-color: #DCDCDC;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    font-family: Helvetica;
+    position: fixed;
+    bottom: 60px;
+    left: 200px;
+    visibility: hidden;
+    cursor: default;
+    
+}
+
+#contact {
+
+    width: 400px;
+    height: 600px;
+    background-color: #DCDCDC;
+    border-color:#FFFFFF black black #FFFFFF;
+    border-style:solid; 
+    text-align: center;
+    font-family: Helvetica;
+    position: fixed;
+    bottom: 60px;
+    left: 200px;
+    visibility: hidden;
+    cursor: default;
+
+}
+
+img {
+    height: 90px;
+}
+
+.windowsHeader {
+    background-color: blue;
+    color: white;
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 0px;
+}
+
+#contact img {
+    height: 150px;
+    vertical-align: middle;
+    margin: 20px;
+}
+
+#bioContent {
+    margin: 5%;
+    font-size: 25px;
+}
+
+#bioContent a {
+    color: red;
+    text-decoration: none;
+}
+
+@media only screen and (max-width: 589px) {
+    h1 {
+      margin-left: 15%;
+      
+    }
+    #firstName {
+        font-size: 25px;
+        
+    }
+    #lastName {
+        position: fixed;
+        top: 80px;
+        font-size: 50px;
+    }
+
+    nav {
+        width: 100px;
+        height: 350px;
+    }
+    #close {
+        
+        
+        position: fixed;
+        left: 92px;
+        bottom: 350px;
+        cursor: default;
+    }
+    #about {
+        width: 250px;
+        height: 500px;
+        position: fixed;
+        bottom: 60px;
+        left: 106px;
+        
+        text-align: center;
+
+    }
+    
+    #projects {
+        width: 250px;
+        height: 500px;
+        position: fixed;
+        bottom: 60px;
+        left: 106px;
+    }
+    #contact {
+        width: 250px;
+        height: 500px;
+        position: fixed;
+        bottom: 60px;
+        left: 106px;
+    }
+
+    #contact img {
+        height: 100px;
+        vertical-align: middle;
+       
+    }
+
+    #bioContent {
+        
+        font-size: 18.5px;
+    }
+
+    #lastName {
+        font-family: 'Arial Black';
+        
+    }
+
+
+
+  }
