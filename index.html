@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Medel - Windows 95</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <svg width="0" height="0" style="position:absolute">
+    <filter id="spray-texture" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="9"/>
+    </filter>
+  </svg>
+
+  <div id="desktop">
+    <div id="spray-wallpaper" aria-hidden="true"><span>MICHAEL MEDEL</span></div>
+
+    <!-- Desktop icons -->
+    <div class="icon" data-window="weather-window" tabindex="0">
+      <div class="icon-img folder-icon"></div>
+      <div class="icon-label">Whether App</div>
+    </div>
+
+    <!-- Weather App Window -->
+    <div class="window" id="weather-window" style="width: 800px; height: 560px; top: 60px; left: 180px;">
+      <div class="title-bar">
+        <div class="title-bar-text">
+          <span class="title-icon folder-icon-small"></span>
+          Whether App
+        </div>
+        <div class="title-bar-controls">
+          <button class="title-btn minimize-btn" aria-label="Minimize">_</button>
+          <button class="title-btn maximize-btn" aria-label="Maximize">☐</button>
+          <button class="title-btn close-btn" aria-label="Close">✕</button>
+        </div>
+      </div>
+      <div class="menu-bar">
+        <span>File</span><span>Edit</span><span>View</span><span>Help</span>
+      </div>
+      <div class="window-body">
+        <iframe class="app-frame" src="https://weather-compare-one.vercel.app/" title="Whether App"></iframe>
+      </div>
+      <div class="status-bar">
+        <span class="status-item">Weather Compare App</span>
+        <span class="status-item">https://weather-compare-one.vercel.app/</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Taskbar -->
+  <div id="taskbar">
+    <button id="start-button">
+      <span class="start-logo"></span>
+      Start
+    </button>
+    <div id="taskbar-items"></div>
+    <div id="tray">
+      <span id="clock">12:00 PM</span>
+    </div>
+  </div>
+
+  <!-- Start Menu -->
+  <div id="start-menu">
+    <div class="start-menu-side">Windows 95</div>
+    <div class="start-menu-items">
+      <div class="start-menu-item" data-window="weather-window">
+        <span class="icon-img folder-icon small"></span> Whether App
+      </div>
+      <div class="start-menu-divider"></div>
+      <div class="start-menu-item disabled">
+        <span class="icon-img shutdown-icon small"></span> Shut Down...
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
