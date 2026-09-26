@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>eat something</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css?v=20260910-4">
+  <link rel="stylesheet" href="style.css?v=20260914-5">
 </head>
 <body>
   <main class="app-shell container-fluid px-3 px-sm-4 py-4">
@@ -19,15 +19,39 @@
         <button type="button" class="btn" data-meal="lunch">lunchy</button>
         <button type="button" class="btn" data-meal="dinner">dins</button>
       </div>
+      <div id="new-search" class="new-search" hidden>
+        <div class="cuisine-filters" role="group" aria-label="Choose a cuisine">
+          <button type="button" data-cuisine="Chinese" aria-pressed="false">chinese</button>
+          <button type="button" data-cuisine="Italian" aria-pressed="false">italian</button>
+          <button type="button" data-cuisine="Mexican" aria-pressed="false">mexican</button>
+          <button type="button" data-cuisine="Thai" aria-pressed="false">thai</button>
+          <button type="button" data-cuisine="Indian" aria-pressed="false">indian</button>
+          <button type="button" data-cuisine="French" aria-pressed="false">french</button>
+          <button type="button" data-cuisine="American" aria-pressed="false">american</button>
+          <button type="button" data-cuisine="German" aria-pressed="false">german</button>
+          <button type="button" data-cuisine="Vegetarian" aria-pressed="false">vegetarian</button>
+          <button type="button" data-cuisine="Vegan" aria-pressed="false">vegan</button>
+          <button type="button" data-cuisine="Coffee shops" aria-pressed="false">coffee shops</button>
+          <button type="button" data-cuisine="Japanese" aria-pressed="false">japanese</button>
+          <button type="button" data-cuisine="Filipino" aria-pressed="false">filipino</button>
+        </div>
+      </div>
     </section>
 
     <section class="results-panel" aria-live="polite">
       <p id="location-status" class="visually-hidden">choose a meal to find the best spots near you.</p>
+      <div id="results-toolbar" class="results-toolbar" hidden>
+        <button type="button" id="new-picks" class="new-picks-button" aria-label="Get new restaurant picks" title="Get new picks">new picks ↗</button>
+      </div>
+      <div id="loading-state" class="loading-state" role="status" aria-live="polite" hidden>
+        <span class="loading-spinner" aria-hidden="true"></span>
+        <span>finding picks...</span>
+      </div>
       <div id="results" class="results" hidden></div>
       <div id="empty-state" class="visually-hidden"><p>your three picks will appear here.</p></div>
     </section>
   </main>
   <script src="config.js"></script>
-  <script src="script.js?v=20260910-5"></script>
+  <script src="script.js?v=20260914-5"></script>
 </body>
 </html>
